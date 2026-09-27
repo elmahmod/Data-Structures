@@ -1,150 +1,171 @@
-# 📦 Array Data Structure
+# 🧩 Matrix Data Structure
 
-## 🧠 What is an Array?
+## 🧠 What is a Matrix?
 
-An **array** is a variable that stores **multiple values of the same type (Homogeneous)**.
+A **matrix** is basically a **2D array**.
 
-Example:
-
-```cpp
-int x[5] = {22, 18, 2, 55, 520};
-```
-
-Here, the array contains **5 integers**.
-
----
-
-## 🔢 Indexes
-
-Array indexes always start from **0**:
+Instead of having only one row like this:
 
 ```text
-Value:  22   18    2   55   520
-Index:   0    1    2    3     4
+10  20  30  40
 ```
 
-So:
+A matrix has **rows and columns**:
 
-```cpp
-x[0] // 22
-x[2] // 2
-x[4] // 520
+```text
+1   2   3   4
+5   6   7   8
+9  10  11  12
 ```
 
 ---
 
-## 💾 How is an Array Stored in Memory?
+## 📍 Rows and Columns
 
-Array elements are stored **next to each other in memory**.
-
-For example, if an `int` uses 4 bytes:
+For this matrix:
 
 ```text
-Value:    22     18      2     55     520
-Address: 1000   1004   1008   1012   1016
+       Col0 Col1 Col2 Col3
+Row0     1    2    3    4
+Row1     5    6    7    8
+Row2     9   10   11   12
 ```
 
-This is called **contiguous memory**.
+We access an element using:
+
+```cpp
+arr[row][column]
+```
+
+For example:
+
+```cpp
+arr[1][2]
+```
+
+means:
+
+```text
+Row 1 + Column 2
+```
+
+So the value is:
+
+```text
+7
+```
 
 ---
 
-## ⚡ Random Access
-
-Arrays allow us to access any element directly using its index:
+## 💻 C++ Example
 
 ```cpp
-x[3]
-```
-
-The computer does **not** need to check:
-
-```text
-x[0] → x[1] → x[2] → x[3]
-```
-
-It can go directly to `x[3]`.
-
-✅ Time Complexity:
-
-```text
-O(1)
+int arr[3][4] =
+{
+    {1, 2, 3, 4},
+    {5, 6, 7, 8},
+    {9, 10, 11, 12}
+};
 ```
 
 ---
 
-# 🔄 Common Array Operations
+# ⚡ Time Complexity
 
-### 🔍 Searching
-
-If we search one element at a time:
-
-```text
-22 → 18 → 2 → 55 → ...
-```
-
-Time Complexity:
-
-```text
-O(n)
-```
-
-### 👀 Access
+## 👀 Access One Element
 
 ```cpp
-cout << x[2];
+cout << arr[1][2];
 ```
 
-Time Complexity:
+The computer can go directly to that position.
 
 ```text
-O(1)
+Time Complexity → O(1) ⚡
 ```
 
-### ✏️ Updating
+---
+
+## ✏️ Update One Element
 
 ```cpp
-x[2] = 10;
+arr[1][2] = 100;
 ```
 
 This changes:
 
 ```text
-Before: {22, 18, 2, 55, 520}
-After:  {22, 18, 10, 55, 520}
+7 → 100
 ```
 
 Time Complexity:
 
 ```text
-O(1)
-```
-
-### 🔁 Traversing the Whole Array
-
-```cpp
-for (int i = 0; i < 5; i++)
-{
-    cout << x[i] << endl;
-}
-```
-
-We visit every element.
-
-Time Complexity:
-
-```text
-O(n)
+O(1) ⚡
 ```
 
 ---
 
-## 🎯 Remember
+## 🔄 Access All Elements
 
-> 📦 **Array = many values of the same type stored next to each other in memory.**
+Usually we use **two loops**:
+
+```cpp
+for (int i = 0; i < 3; i++)
+{
+    for (int j = 0; j < 4; j++)
+    {
+        cout << arr[i][j] << " ";
+    }
+}
+```
+
+For a square matrix of size `N × N`:
 
 ```text
-Access one element  → O(1) ⚡
-Update one element  → O(1) ⚡
-Search              → O(n)
-Visit all elements  → O(n)
+O(N²)
 ```
+
+because we visit:
+
+```text
+N rows × N columns
+```
+
+For a matrix with `R` rows and `C` columns:
+
+```text
+O(R × C)
+```
+
+---
+
+# 🎯 Remember
+
+> 🧩 **Matrix = Array of rows and columns**
+
+```text
+Access one element   → O(1) ⚡
+Update one element   → O(1) ⚡
+Visit all elements   → O(N²) for N × N matrix
+```
+
+And:
+
+```cpp
+arr[row][column]
+```
+
+Example:
+
+```cpp
+arr[2][3]
+```
+
+means:
+
+```text
+3rd row, 4th column
+```
+
+because indexes start from **0**.
