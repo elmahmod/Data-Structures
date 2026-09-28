@@ -43,6 +43,16 @@ Node *findNode(Node *head, int value)
     return nullptr;
 }
 
+void deleteList(Node *&head)
+{
+    while (head != nullptr)
+    {
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
 int main()
 {
     Node *head = nullptr;
@@ -55,11 +65,12 @@ int main()
     printList(head);
 
     Node *node1 = findNode(head, 55);
-    
+
     if (node1 != nullptr)
         cout << "\nNode found\n";
     else
         cout << "\nNode is not found\n";
 
+    deleteList(head);
     return 0;
 }

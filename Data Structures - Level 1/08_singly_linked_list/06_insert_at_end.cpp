@@ -43,6 +43,16 @@ void insertAtEnd(Node *&head, int value)
     newNode->next = nullptr;
 }
 
+void deleteList(Node *&head)
+{
+    while (head != nullptr)
+    {
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
 int main()
 {
     Node *head = nullptr;
@@ -51,6 +61,7 @@ int main()
     insertAtEnd(head, 2);
     insertAtEnd(head, 3);
     printList(head);
-    
+
+    deleteList(head);
     return 0;
 }

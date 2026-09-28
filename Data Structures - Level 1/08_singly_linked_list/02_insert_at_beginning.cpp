@@ -29,6 +29,16 @@ void printList(Node *head)
     }
 }
 
+void deleteList(Node *&head)
+{
+    while (head != nullptr)
+    {
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
 int main()
 {
     Node *head = nullptr;
@@ -38,5 +48,6 @@ int main()
 
     printList(head);
 
+    deleteList(head);
     return 0;
 }

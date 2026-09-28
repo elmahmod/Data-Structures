@@ -66,15 +66,57 @@ void deleteNode(Node *&head, int value)
         currentNode = currentNode->next;
     }
 
+    if (currentNode == nullptr)
+        return;
+
     prevNode->next = currentNode->next;
     delete currentNode;
 }
 
 void deleteFirstNode(Node *&head)
 {
+    if (head == nullptr)
+        return;
+
     Node *temp = head;
     head = head->next;
+
     delete temp;
+}
+
+void deleteLastNode(Node *&head)
+{
+    Node *lastNode = head;
+    Node *prevNode = nullptr;
+
+    if (head == nullptr)
+        return;
+
+    if (lastNode->next == nullptr)
+    {
+        head = nullptr;
+        delete lastNode;
+        return;
+    }
+
+    while (lastNode->next != nullptr)
+    {
+        prevNode = lastNode;
+        lastNode = lastNode->next;
+    }
+
+    prevNode->next = nullptr;
+    delete lastNode;
+}
+
+void deleteList(Node *&head)
+{
+    while (head != nullptr)
+    {
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+    }
 }
 
 int main()
@@ -84,13 +126,18 @@ int main()
     insertAtEnd(head, 1);
     insertAtEnd(head, 2);
     insertAtEnd(head, 3);
+    insertAtEnd(head, 4);
     printList(head);
-    
+
     deleteFirstNode(head);
     printList(head);
-    
+
     deleteNode(head, 3);
     printList(head);
 
+    deleteLastNode(head);
+    printList(head);
+
+    deleteList(head);   
     return 0;
 }
